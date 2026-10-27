@@ -1,4 +1,28 @@
-# Legislação brasileira — lei seca
+<p align="center"><img src="assets/xmercado-hellenai-base-legal.svg" alt="XMERCADO e HELLENAI — Base Legal" width="100%"></p>
+
+<h1 align="center">XMERCADO × HELLENAI · Base Legal</h1>
+
+<p align="center"><strong>Legislação brasileira com origem identificada, histórico de versões e atualização automatizada.</strong></p>
+
+<p align="center">
+<a href="https://www.xmercado.com.br">XMERCADO</a> ·
+<a href="https://hellenai.com.br">HELLENAI</a> ·
+<a href="https://github.com/xmercadoamericalatina/leis/actions">Coletas e execuções</a> ·
+<a href="scripts/lei_seca/README.md">Documentação</a>
+</p>
+
+---
+
+## Nossa base legal
+
+Uma iniciativa **XMERCADO e HELLENAI** para organizar e manter uma base de lei seca obtida de fontes oficiais. A identidade desta edição, sua apresentação e a manutenção do atualizador são conduzidas pela XMERCADO e HELLENAI.
+
+| Princípio | Aplicação |
+| --- | --- |
+| Fonte oficial | Origem identificada em cada documento coletado. |
+| Lei seca | Sem doutrina, comentários ou conteúdo jurisprudencial nas novas coletas. |
+| Rastreabilidade | Originais, hashes SHA-256 e versões preservadas. |
+| Transparência | Cobertura, falhas e pendências registradas. |
 
 Atualização de textos normativos obtidos de fontes oficiais, com prioridade à reforma tributária e à legislação trabalhista. **Não se declara que este repositório contém todo o ordenamento brasileiro ou que todas as fontes estejam atualizadas.**
 
@@ -30,3 +54,13 @@ python3 -I scripts/lei_seca/auditar.py lei-seca
 ```
 
 Código novo sob a licença MIT do repositório. Textos oficiais mantêm a identificação de sua fonte.
+
+## Origem, autoria e licença
+
+Esta edição é um fork de [ctresb/leis](https://github.com/ctresb/leis). Reconhecemos a contribuição do projeto original e de seus autores. A identidade XMERCADO e HELLENAI identifica a manutenção e a evolução desta edição; não atribui à empresa a autoria das contribuições anteriores ou dos textos oficiais.
+
+Os avisos de copyright, a [licença original](LICENSE) e o histórico de contribuições são preservados. A indicação “forked from” exibida pelo GitHub registra essa origem e não é removida por uma mudança visual.
+
+---
+
+<p align="center"><strong>XMERCADO × HELLENAI</strong><br>Informação legal com fonte, histórico e transparência.</p>
