@@ -41,9 +41,9 @@ Não rode duas instâncias locais gravando na mesma pasta. No GitHub, `concurren
 
 O workflow na branch padrão agenda quatro execuções diárias: 03h17, 09h17, 15h17 e 21h17, horário de Belém. São horários solicitados ao GitHub; a execução pode atrasar. Também roda quando este pacote é alterado na `main` ou mediante **Actions → Atualizar lei seca → Run workflow**.
 
-A conexão que grava o workflow precisa ter permissão `workflows`. O `GITHUB_TOKEN` precisa permitir escrita de conteúdo na branch e as Actions precisam estar habilitadas. O workflow usa `contents: write`, não solicita segredos nem chaves externas e nunca usa force push. Se proteção da branch impedir o commit, a execução falha de forma visível. Forks podem ter agendamentos desabilitados ou suspensos pelo GitHub; confira a primeira execução em Actions.
+A conexão que grava o workflow precisa ter permissão `workflows`. O `GITHUB_TOKEN` precisa permitir escrita de conteúdo na branch e as Actions precisam estar habilitadas. O workflow usa `contents: write`, não solicita segredos nem chaves externas e nunca usa force push. Se proteção da branch impedir o commit, a execução falha de forma visível. Falhas de fonte ficam no relatório e geram aviso, mas não invalidam uma execução cujos testes, auditoria e commit foram concluídos. Forks podem ter agendamentos desabilitados ou suspensos pelo GitHub; confira a primeira execução em Actions.
 
-A coleta salva checkpoints e pendências mesmo quando uma fonte falha. Uma execução com erros fica vermelha após salvar o resultado, em vez de declarar sucesso parcial como atualização completa. Confira `ultima_execucao.json`, `pendencias.json` e `cobertura.json`.
+A coleta salva checkpoints e pendências mesmo quando uma fonte falha. O workflow registra essas falhas como aviso após salvar o resultado, sem declarar cobertura completa; falhas em testes, auditoria ou commit continuam fazendo a execução falhar. Confira `ultima_execucao.json`, `pendencias.json` e `cobertura.json`.
 
 ## Prioridades e atualização histórica
 
