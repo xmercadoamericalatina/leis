@@ -1,0 +1,27 @@
+{
+  "conector": "senado",
+  "conferido_em": "2026-10-28T22:39:41+00:00",
+  "data": "2019-12-11",
+  "elementos_visuais": [
+    "img"
+  ],
+  "esfera": "federal",
+  "fonte": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2019-12-11;13932",
+  "forca_legal_fonte": null,
+  "id": "senado-31808074",
+  "id_senado": "31808074",
+  "integralidade": "nao_certificada",
+  "notas_da_fonte": "Preservadas, sem interpretação ou consolidação própria.",
+  "numero": "13932",
+  "original": "originais/28/2819a877cfdb3574602d9f184c829330e58a500339ad4184217df10f72c307e9.gz",
+  "politica": "lei-seca-v1",
+  "sha256_metadados_fonte": "9d901957e3c5c88bc8478350c8c1580cd3b7341bed95990af60df49d5473aa63",
+  "sha256_original": "2819a877cfdb3574602d9f184c829330e58a500339ad4184217df10f72c307e9",
+  "sha256_texto": "8e0f3164969f2497493527c2b331f1a029f3505de4cea4c703a95dd2b954f310",
+  "tipo": "Lei",
+  "titulo": "Lei nº 13.932 de 11/12/2019",
+  "url_texto": "https://normas.leg.br/api/public/binario/ee66504a-5498-4d2e-8b43-cb6840e73b49/texto",
+  "urn": "urn:lex:br:federal:lei:2019-12-11;13932",
+  "versao_texto": "Current",
+  "vigencia": "nao_inferida"
+}
