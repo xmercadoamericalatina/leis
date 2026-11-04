@@ -1,15 +1,16 @@
 """Testes de escopo, integridade e atualização usando fontes simuladas."""
 import argparse
 import gzip
+import http.client
 import json
 from pathlib import Path
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from core import LegalHTML, allowed_kind, extract, publish, read_json, validate_url, write_json
+from core import LegalHTML, Network, allowed_kind, extract, publish, read_json, validate_url, write_json
 from coletar import discover_portal, discover_sapl, discover_senate, senate_docs, senate_entry
 from atualizar import enqueue, run
 from auditar import audit
@@ -36,6 +37,36 @@ class FakeNet:
 
 
 class Tests(unittest.TestCase):
+    def test_network_retries_disconnected_and_incomplete_reads(self):
+        class Response:
+            url = 'https://www.gov.br/'
+            headers = {'Content-Type': 'text/plain'}
+
+            def __init__(self, error=None):
+                self.error = error
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self, size):
+                if self.error:
+                    raise self.error
+                return b'ok'
+
+        net = Network(seconds=0)
+        net.opener.open = Mock(side_effect=[
+            http.client.RemoteDisconnected('connection closed'),
+            Response(http.client.IncompleteRead(b'partial', 10)),
+            Response(),
+        ])
+        with patch('core.socket.getaddrinfo', return_value=[(None, None, None, None, ('8.8.8.8', 443))]), \
+                patch('core.time.sleep'):
+            self.assertEqual(net.get('https://www.gov.br/'), (b'ok', 'text/plain', 'https://www.gov.br/'))
+        self.assertEqual(net.opener.open.call_count, 3)
+
     def test_types(self):
         for kind in ['Lei', 'Lei Complementar', 'Decreto-Lei', 'Emenda Constitucional', 'Portaria Normativa', 'Instrução Normativa']:
             self.assertTrue(allowed_kind(kind), kind)

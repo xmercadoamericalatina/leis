@@ -2,6 +2,7 @@
 import datetime as dt
 import gzip
 import hashlib
+import http.client
 import ipaddress
 import json
 import os
@@ -102,7 +103,7 @@ class Network:
                     raise
                 if exc.code < 500 or attempt == 2:
                     raise
-            except (urllib.error.URLError, TimeoutError):
+            except (urllib.error.URLError, TimeoutError, http.client.HTTPException, ConnectionError):
                 if attempt == 2:
                     raise
             time.sleep(2 ** attempt)

@@ -29,6 +29,7 @@ jobs:
       - name: Obter somente atualizador e acervo curado
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
+          ref: main
           fetch-depth: 1
           filter: blob:none
           sparse-checkout: |
@@ -68,6 +69,8 @@ jobs:
         shell: bash
         run: |
           if test -f lei-seca/ultima_execucao.json; then
-            python3 -c 'import json,os; r=json.load(open("lei-seca/ultima_execucao.json")); f=open(os.environ["GITHUB_STEP_SUMMARY"],"a"); f.write("## Lei seca\n\nProcessados: "+str(r["processados"])+". Fila: "+str(r["fila_total"])+".\n\nConsulte lei-seca/pendencias.json e cobertura.json. Volume não comprova completude nacional.\n")'
+            python3 -c 'import json,os; r=json.load(open("lei-seca/ultima_execucao.json")); erros=sum(e["status"]=="erro" for e in r["eventos"]); f=open(os.environ["GITHUB_STEP_SUMMARY"],"a"); f.write("## Lei seca\n\nProcessados: "+str(r["processados"])+". Fila: "+str(r["fila_total"])+". Falhas de coleta: "+str(erros)+".\n\nConsulte lei-seca/ultima_execucao.json e pendencias.json. Volume não comprova completude nacional.\n")'
           fi
-          test "$CODIGO" = '0'
+          if test "$CODIGO" != '0'; then
+            echo "::warning::A coleta registrou falhas; os resultados e pendências foram salvos para rechecagem."
+          fi
